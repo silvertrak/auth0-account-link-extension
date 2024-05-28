@@ -54,6 +54,14 @@ module.exports = () => ({
       .then((token) => {
         fetchUsersFromToken(token)
           .then(({ currentUser, matchingUsers }) => {
+            logger.info(
+              "CUSTOM EXTENTION - Current User: ",
+              JSON.stringify(currentUser)
+            );
+            logger.info(
+              "CUSTOM EXTENTION - Matching Users: ",
+              JSON.stringify(matchingUsers)
+            );
             getSettings().then((settings) => {
               // if there are multiple matching users, take the oldest one
               const userMetadata = (matchingUsers[0] && matchingUsers[0].user_metadata) || {};
